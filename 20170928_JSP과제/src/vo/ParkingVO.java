@@ -3,12 +3,12 @@ package vo;
 public class ParkingVO {
 	private String parkno;
 	private String carno;
-	private char grade;
-	private char tstat;
+	private String grade;
+	private String tstat;
 	private String indate;
 	private String outdate;
 
-	public ParkingVO(String parkno, String carno, char grade, char tstat,
+	public ParkingVO(String parkno, String carno, String grade, String tstat,
 			String indate, String outdate) {
 		this.parkno = parkno;
 		this.carno = carno;
@@ -26,11 +26,11 @@ public class ParkingVO {
 		return carno;
 	}
 
-	public char getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
-	public char getTstat() {
+	public String getTstat() {
 		return tstat;
 	}
 
@@ -50,11 +50,11 @@ public class ParkingVO {
 		this.carno = carno;
 	}
 
-	public void setGrade(char grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 
-	public void setTstat(char tstat) {
+	public void setTstat(String tstat) {
 		this.tstat = tstat;
 	}
 
