@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 import vo.TicketVO;
 
 public class TicketDao extends HttpServlet{
+	
 	public int enroll(String tno, String carno, String phone, String grade, String tstat, String startdate, String enddate) throws NamingException, SQLException{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -32,7 +34,7 @@ public class TicketDao extends HttpServlet{
 			pstmt.setString(1, tno);
 			pstmt.setString(2, carno);
 			pstmt.setString(3, phone);
-			pstmt.setString(4, grade);
+			pstmt.setString(4, grade.toUpperCase());
 			pstmt.setString(5, tstat.toUpperCase());
 			pstmt.setString(6, startdate);
 			pstmt.setString(7, enddate);
@@ -105,6 +107,67 @@ public class TicketDao extends HttpServlet{
 			}
 		}
 		return listTicket;
+		
+	}
+	
+	public ArrayList searchIn(String carno){
+		TicketVO tVO = null;
+		ArrayList listParking = new ArrayList();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String searchQuery = "SELECT * FROM ticket_tbl_01 where carno= ?;";
+		try {
+			Context context = new InitialContext();
+			DataSource source = (DataSource) context
+					.lookup("java:comp/env/jdbc/myconn");
+			conn = source.getConnection();
+			System.out.println("서버접속성공!");
+
+			pstmt = conn.prepareStatement(searchQuery);
+			pstmt.setString(1, carno);
+			rs = pstmt.executeQuery();
+			String grade="";
+			//String tstat="";
+			while (rs.next()) {
+			/*	if(rs.getString(4).toUpperCase().equals("M")){
+					grade = "월회원";
+				}else if(rs.getString(4).toUpperCase().equals("Y")){
+					grade = "연회원";
+				}else if(rs.getString(4).toUpperCase().equals("D")){
+					grade = "일회원";
+				}*/
+				
+				
+				tVO = new TicketVO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				System.out.print("정기권번호 : " + rs.getString(1));
+				System.out.print(", 차량번호 : " + rs.getString(2));
+				System.out.print(", 차주전화 : " + rs.getString(3));
+				System.out.print(", 등급 : " + rs.getString(4));
+				System.out.print(", 주차시작일 : " + rs.getString(6));
+				System.out.println(", 주차종료일 : " + rs.getString(7));
+				
+				listParking.add(tVO);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {// JDBC 종료
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return listParking;
 		
 	}
 }
