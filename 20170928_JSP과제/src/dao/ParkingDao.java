@@ -95,7 +95,7 @@ public class ParkingDao {
 		}
 		return inStat;
 	}
-	
+	//차량 출고 여부 확인
 	public String parkOut(String carno) {
 
 		Connection conn = null;

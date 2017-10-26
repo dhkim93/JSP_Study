@@ -10,11 +10,7 @@
 
 <script type="text/javascript">
 	function checkBlank() {
-		if (!join.ticketNum.value) {
-			alert("정기권번호를 입력하세요");
-			document.join.ticketNum.focus();
-			return;
-		} else if (!join.carNum.value) {
+		if (!join.carNum.value) {
 			alert("차량번호를 입력하세요");
 			document.join.carNum.focus();
 			return;
@@ -30,17 +26,9 @@
 			alert("정기권상태를 입력하세요");
 			document.join.status.focus();
 			return;
-		} else if (!join.startDate.value) {
-			alert("시작일을 입력하세요");
-			document.join.startDate.focus();
-			return;
-		} else if (!join.endDate.value) {
-			alert("종료일을 입력하세요");
-			document.join.endDate.focus();
-			return;
 		} else {
 			join.submit();
-			alert("정기주차권신청이 완료 되었습니다!")
+			alert("정기주차권신청이 완료 되었습니다!");
 		}
 	}
 	function goSearch(){

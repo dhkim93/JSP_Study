@@ -17,17 +17,15 @@ function parking_in_out(url) {
 </script>
 </head>
 <body>
-<jsp:include page="header.jsp" /><br/>
-<jsp:include page="nav.jsp" /><br/>
+
 <h3>주차차량입고.출고관리</h3>
 <form method="get">
 
 차량번호<input type="text" id="carno"/>&nbsp;&nbsp;
 <input type="button" onClick="parking_in_out('in')" value="주차입고"/>&nbsp;&nbsp;<input type="button" onClick="parking_in_out('out')" value="주차출고"/><br/>
 
-<iframe id="iframe" width="90%" height="400" />
+<iframe id="iframe" width="90%" height="300"/>
 </form>
-<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

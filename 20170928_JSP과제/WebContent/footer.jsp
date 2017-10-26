@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-HRD KOREAD Copyright@ 2015 All rights reserved.
+<center>
+<h4>HRD KOREAD Copyright@ 2015 All rights reserved.</h4>
+</center>
 </body>
 </html>

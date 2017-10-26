@@ -12,17 +12,15 @@
 
 </style>
 <script type="text/javascript">
-	function goToPage() {
-		out.println(nav.enroll);
-		if (nav.enroll) {
-			location.href="enroll.jsp";
-		} else if (!join.pw.value) {
-			alert("비밀번호를 입력하세요");
-			return;
-			document.join.pw.focus();
-		} else {
-
-			join.submit();
+	function changeView(value){
+		if (value == "0") {
+			location.href="index.jsp?contentPage=enroll.jsp";
+		}else if (value == "1"){
+			location.href="index.jsp?contentPage=ticket_search.jsp";
+		}else if(value == "2"){
+			location.href="index.jsp?contentPage=inout.jsp";
+		}else if(value == "3"){
+			location.href="index.jsp?contentPage=parking_search.jsp";
 		}
 	}
 </script>
@@ -32,15 +30,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="enroll.jsp">정기권 등록</a>
-<a href="ticket_search.jsp">정기권 조회</a>
-<a href="inout.jsp">주차차량입.출고</a>
-<a href="parking_search.jsp">주차현황조회</a>
-<!-- <form value="nav">
-<input type="button"  name="enroll" class="invisible" value="정기권등록">
-<input type="button" name="ticket_search" class="invisible" value="정기권 조회">
-<input type="button" name="inout" class="invisible" value="주차차량입.출고">
-<input type="button" name="parking_search" class="invisible" value="주차현황조회">
-</form> -->
+<div>
+        <p>
+            <button onclick="changeView(0)">정기권등록</button>
+            <button  id="ticketSearch" onclick="changeView(1)">정기권조회</button>
+            <button id="joinBtn" onclick="changeView(2)">주차차량입.출고</button>
+            <button id="parkSearch" onclick="changeView(3)">주차현황조회</button>
+        </p>
+    </div>
 </body>
 </html>
